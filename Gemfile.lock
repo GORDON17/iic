@@ -58,6 +58,7 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     multi_json (1.12.2)
+    pg (0.17.1)
     polyglot (0.3.5)
     pry (0.9.12.6)
       coderay (~> 1.0)
@@ -117,6 +118,7 @@ DEPENDENCIES
   active_model_serializers
   jquery-rails
   listen (~> 3.0.5)
+  pg
   pry-byebug
   puma
   rack-cors
