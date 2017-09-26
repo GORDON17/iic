@@ -1,3 +1,3 @@
 class Book < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :author, :categories, :lastCheckedOut, :lastCheckedOutBy, :publisher, :title, :url
 end

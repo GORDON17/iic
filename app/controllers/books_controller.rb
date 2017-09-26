@@ -1,11 +1,14 @@
 class BooksController < ApplicationController
   before_filter :set_book, only: [:show, :update, :destroy]
+  def instructions
+  	render template: "books/instructions"
+  end
 
   # GET /books
   def index
     @books = Book.all
 
-    render json: @books
+    render json: @books.to_json
   end
 
   # GET /books/1
@@ -15,30 +18,43 @@ class BooksController < ApplicationController
 
   # POST /books
   def create
-    # byebug
-    @book = Book.new(book_params)
+    begin
+      @book = Book.new
+      @book.title = params[:title]
+      @book.author = params[:author]
+      @book.publisher = params[:publisher]
+      @book.categories = params[:categories]
 
-    if @book.save
-      render json: @book, status: :created, location: @book
-    else
-      render json: @book.errors, status: :unprocessable_entity
+      if @book.save
+        render json: @book, status: :created, location: @book
+      else
+        render json: @book.errors, status: :unprocessable_entity
+      end
+    rescue Exception => e
+      raise Exception.new(build_error(400, e.message))
     end
   end
 
   # PATCH/PUT /books/1
   def update
-    if @book.update(book_params)
-      render json: @book
-    else
-      render json: @book.errors, status: :unprocessable_entity
+    begin
+      @book.lastCheckedOutBy = params[:lastCheckedOutBy]
+      @book.lastCheckedOut = Time.now.strftime("%Y-%m-%d %H:%M:%S %Z")
+      if @book.save
+        render json: @book
+      else
+        render json: @book.errors, status: :unprocessable_entity
+      end
+    rescue Exception => e
+      raise Exception.new(build_error(400, e.message))
     end
   end
 
   # DELETE /books/1
   def destroy
     begin
-    	@book.destroy
-    	render json: build_success(200, 'Success')
+      @book.destroy
+    	head :no_content
   	rescue Exception => e
       raise Exception.new(build_error(400, e.message))
     end
@@ -48,7 +64,7 @@ class BooksController < ApplicationController
   def destroy_all
   	begin
     	Book.destroy_all
-    	render json: build_success(200, 'Success')
+    	head :ok
   	rescue Exception => e
       raise Exception.new(build_error(400, e.message))
     end
@@ -61,23 +77,11 @@ class BooksController < ApplicationController
       @book = Book.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
-    def book_params
-      params.require(:book).permit(:author, :categories, :lastCheckedOut, :lastCheckedOutBy, :publisher, :title, :url)
-    end
-
     def build_error(code, message)
 	    {
 	        code: code,
 	        message: message,
 	        success: false
-	    }.to_json
-  	end
-  	def build_success(code, message)
-	    {
-	        code: code,
-	        message: message,
-	        success: true
 	    }.to_json
   	end
 end

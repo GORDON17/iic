@@ -36,4 +36,5 @@ IosApi::Application.configure do
   config.assets.debug = true
 
   config.debug_exception_response_format = :default
+  config.active_record.include_root_in_json = false
 end

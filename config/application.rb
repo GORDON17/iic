@@ -58,8 +58,9 @@ module IosApi
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    config.active_record.include_root_in_json = false
 
-    config.api_only = true
+    # config.api_only = true
 
     config.middleware.insert_before 0, "Rack::Cors" do
       allow do

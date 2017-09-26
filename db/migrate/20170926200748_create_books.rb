@@ -7,7 +7,6 @@ class CreateBooks < ActiveRecord::Migration
       t.string :lastCheckedOutBy
       t.string :publisher
       t.string :title
-      t.string :url
 
       t.timestamps
     end

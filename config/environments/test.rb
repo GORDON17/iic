@@ -34,4 +34,5 @@ IosApi::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  config.active_record.include_root_in_json = false
 end

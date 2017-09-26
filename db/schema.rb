@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(:version => 20170926200748) do
     t.string   "lastCheckedOutBy"
     t.string   "publisher"
     t.string   "title"
-    t.string   "url"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end

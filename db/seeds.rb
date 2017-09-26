@@ -5,3 +5,4 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Book.create(author: 'Ash Maurya', categories: 'process', publisher: "O'REILLY", title: "Running Lean", url: '/books/1/')

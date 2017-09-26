@@ -12,6 +12,8 @@ gem 'puma'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'active_model_serializers'
 
+gem 'jquery-rails'
+
 group :development do
   gem 'listen', '~> 3.0.5'
   gem 'pry-byebug'
