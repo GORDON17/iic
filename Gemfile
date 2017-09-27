@@ -19,6 +19,7 @@ gem 'active_model_serializers'
 
 gem 'jquery-rails'
 gem 'uglifier'
+gem 'test-unit'
 
 group :development do
   gem 'listen', '~> 3.0.5'
