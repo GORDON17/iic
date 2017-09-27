@@ -59,6 +59,7 @@ module IosApi
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     config.active_record.include_root_in_json = false
+    config.assets.initialize_on_precompile = false
 
     # config.api_only = true
 

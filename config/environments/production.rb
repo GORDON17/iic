@@ -65,4 +65,5 @@ IosApi::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   config.active_record.include_root_in_json = false
+  config.assets.js_compressor = :uglifier
 end
